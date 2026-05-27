@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "nombre": "Duo Pistacho",
+        "precio": 20000,
+        "stock": 15,
+        "imagen": "/images/duo-pistacho.jpg"
+    },
+    {
+        "id": "2",
+        "nombre": "Luxury",
+        "precio": 42900,
+        "stock": 7,
+        "imagen": "/images/luxury.jpg"
+    },
+    {
+        "id": 3,
+        "nombre": "Pure Mint",
+        "precio": 19000,
+        "stock": 13,
+        "imagen": "/images/pure-mint.jpg"
+    },
+    {
+        "id": 4,
+        "nombre": "Blaca Tropical",
+        "precio": 20000,
+        "stock": 4,
+        "imagen": "/images/blanca-tropical.jpg"
+    },
+    {
+        "id": 5,
+        "nombre": "Barras Macizas",
+        "precio": 8900,
+        "stock": 24,
+        "imagen": "/images/barras-macizas.jpg"
+    }
+]

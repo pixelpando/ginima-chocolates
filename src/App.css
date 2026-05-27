@@ -1,0 +1,30 @@
+section {
+    width: 100%;
+    max-width: 1000px;
+    padding-block: 2rem;
+    margin-inline: auto;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin: 1rem;
+    &.destacado {
+        color: var(--accent-border);
+        margin-block: 2rem 0.5rem;
+    }
+}
+
+h3, p, ul {
+    padding: 0;
+    margin: 0;
+}
+
+.auto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(12rem, 100%), 1fr));
+    gap: 1rem;
+}
+
+ul li {
+    list-style-type: none;
+}

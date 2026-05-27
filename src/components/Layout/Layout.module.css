@@ -1,0 +1,4 @@
+.debug * {
+    /* para ver los limites de los elementos */
+    outline: 1px dashed cyan;
+}

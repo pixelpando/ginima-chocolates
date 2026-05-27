@@ -1,0 +1,23 @@
+
+.asistente {
+    outline: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem 1rem;
+}
+
+.nombre {
+    font-size: 1.5rem;
+    color: coral;
+    margin-bottom: 0.5rem;
+}
+
+.tarea {
+    color: lightskyblue;
+}
+
+.emoji {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+}
