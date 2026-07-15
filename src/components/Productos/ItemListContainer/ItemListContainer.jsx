@@ -11,29 +11,6 @@ function ItemListContainer({ Mensaje, Destacados }) {
     const [error, setError] = useState(null)
     const [cargando, setCargando] = useState(true)
 
-    /*
-        useEffect(() => {
-            fetch('data/productos.json')
-                .then((res) => {
-                    if (!res.ok) {
-                        throw new Error('No se pudo cargar la información de los productos')
-                    }
-                    return res.json()
-                })
-                .then((datos) => {
-                    setProductos(datos)
-                    console.log('Productos obtenidos de la API JSON')
-                })
-                .catch((error) => {
-                    setError(error.message)
-                    console.log('No hay productos')
-                })
-                .finally(() => {
-                    setCargando(false)
-                })
-        }, [])
-    */
-
     useEffect(() => {
         const propDB = collection(db, "productos")
 
