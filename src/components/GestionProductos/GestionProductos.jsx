@@ -1,18 +1,18 @@
 import styles from './GestionProductos.module.css'
 import { useState, useEffect } from 'react'
 import { db } from '../../firebase/config.js'
-import { getFirestore, collection, getDocs, deleteDoc, doc, addDoc, updateDoc } from "firebase/firestore"
+import { collection, getDocs, deleteDoc, doc, addDoc, updateDoc } from "firebase/firestore"
 import FormularioProducto from '../FormularioProducto/FormularioProducto.jsx'
 
 const GestionProductos = () => {
     const [productos, setProductos] = useState([])
 
     const estadoInicialForm = {
-        id: '',
+        id: 13,
         nombre: '',
         categoria: '',
-        precio: '',
-        stock: '',
+        precio: 1,
+        stock: 1,
         detalle: '',
         imagen: '',
         destacado: false
@@ -24,12 +24,13 @@ const GestionProductos = () => {
 
     const [loading, setLoading] = useState(null)
 
+    const [productoAEditar, setProductoAEditar] = useState(null)
+
     const manejarCambio = (evento) => {
-        const { name, value, type } = evento.target
+        const { name, value } = evento.target
         setDatosForm({
             ...datosForm,
-            [name]: type === 'number' ? (value === '' ? '' : Number(value)) : value
-            // [name]: value
+            [name]: value
         })
     }
 
@@ -41,7 +42,7 @@ const GestionProductos = () => {
         const productosRef = collection(db, "productos")
         const resp = await getDocs(productosRef)
         setProductos(
-            resp.docs.map((doc) => ({ ...doc.data(), idFirestore: doc.id  })) //, id: doc.id 
+            resp.docs.map((doc) => ({ ...doc.data(), idFirestore: doc.id  }))
         )
     }
 
@@ -51,6 +52,7 @@ const GestionProductos = () => {
     }, [])
 
     const handleDelete = async (id) => {
+        console.log("ID para eliminar: ", id)
         const confirmacion = window.confirm("¿Está seguro de que desea eliminar este producto?")
         if (confirmacion) {
             const docRef = doc(db, "productos", id)
@@ -59,8 +61,6 @@ const GestionProductos = () => {
             alert("Producto eliminado.")
         }
     }
-
-    const [productoAEditar, setProductoAEditar] = useState(null)
 
     const manejarEditar = (producto) => {
         setProductoAEditar(producto)
@@ -114,7 +114,6 @@ const GestionProductos = () => {
 
             console.log('Enviando producto a Firebase:', productoCompleto)
 
-            const db = getFirestore();
 
             const productosCollection = collection(db, "productos")
 
@@ -169,14 +168,14 @@ const GestionProductos = () => {
                         <span>${prod.precio}</span>
                         <span>Stock: {prod.stock}</span>
                         <button onClick={() => manejarEditar(prod)} className={styles.btnEditar}>Editar</button>
-                        <button onClick={() => handleDelete(prod.id)} className={styles.btnEliminar}>Eliminar</button>
-                        {/* <button 
-                            onClick={() => handleDelete(prod.id)} 
+                        {/* <button onClick={() => handleDelete(prod.idFirestore)} className={styles.btnEliminar}>Eliminar</button> */}
+                        <button 
+                            onClick={() => handleDelete(prod.idFirestore)} 
                             className={styles.btnEliminar}
                             disabled={Number(prod.id) <= 12}
                         >
                             Eliminar
-                        </button> */}
+                        </button>
                     </li>
                 ))}
             </ul>

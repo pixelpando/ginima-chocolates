@@ -20,11 +20,11 @@ function FormularioProducto({
                     type="number"
                     placeholder="Ej: 25"
                     name="id"
-                    min='1'
+                    min="1"
                     value={datosForm.id}
                     onChange={manejarCambio}
                 />
-                <small>ATENCIÓN: No usar un mismo ID en diferentes productos.</small>
+                <small>ATENCIÓN: No usar un mismo ID en los productos.</small>
             </div>
             <div>
                 <label>Nombre del producto</label>
@@ -62,6 +62,7 @@ function FormularioProducto({
                     type="number"
                     placeholder="Ej. 7"
                     name="stock"
+                    min="1"
                     value={datosForm.stock}
                     onChange={manejarCambio}
                 />
