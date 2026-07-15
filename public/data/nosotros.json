@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "nombre": "Laura",
+        "email": "laura@email.com",
+        "puesto": "Master Chocolatier",
+        "foto": "/images/laura.jpg"
+    },
+    {
+        "id": 2,
+        "nombre": "Maia",
+        "email": "maia@email.com",
+        "puesto": "Main Assistant",
+        "foto": "/images/maia.jpg"
+    },
+    {
+        "id": 3,
+        "nombre": "Nina",
+        "email": "nina@email.com",
+        "puesto": "Junior Assistant",
+        "foto": "/images/nina.jpg"
+    },
+    {
+        "id": 4,
+        "nombre": "Gianna",
+        "email": "gianna@email.com",
+        "puesto": "Junior Assistant",
+        "foto": "/images/gianna.jpg"
+    },
+    {
+        "id": 5,
+        "nombre": "Emi",
+        "email": "emi@email.com",
+        "puesto": "Main Investor",
+        "foto": "/images/emi.jpg"
+    }
+]

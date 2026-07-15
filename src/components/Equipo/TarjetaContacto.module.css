@@ -1,0 +1,27 @@
+.card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.foto {
+    width: 70%;
+    object-fit: cover;
+    border-radius: 100vh;
+    border: 5px solid var(--accent);
+}
+
+.nombre {
+    font-size: 1.25rem;
+    color: var(--accent);
+    margin: 0.5rem;
+}
+
+.link {
+    color: var(--accent-comp);
+    text-decoration: none;
+    &:hover {
+        filter: brightness(1.3);
+    }
+}

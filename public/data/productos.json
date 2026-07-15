@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "nombre": "Duo Pistacho",
+        "precio": 20000,
+        "destacado": true,
+        "detalle": "Barra de chocolate con leche y chocolate blanco. Con tropezones de pistachos tostados y un toque de Sal del Himalaya.",
+        "stock": 15,
+        "imagen": "/images/duo-pistacho.jpg",
+        "categoria": "Combinado"
+    },
+    {
+        "id": 2,
+        "nombre": "Luxury",
+        "precio": 42900,
+        "destacado": false,
+        "detalle": "Huevo de chocolate con leche con paredes rellenas de dulce de leche. En su interior todas golosinas de primera marca: 2 barritas kinder, 2 Ferrero Rocher, 2 Cabsha, almendras bañadas en chocolate y maní con chocolate. Peso aprox. 440gr. Se reservan y confirman con el 50% de seña, se puede abonar a través de transferencia.",
+        "stock": 4,
+        "imagen": "/images/luxury.jpg",
+        "categoria": "Con leche"
+    },
+    {
+        "id": 3,
+        "nombre": "Pure Mint",
+        "precio": 19000,
+        "destacado": false,
+        "detalle": "Barra de chocolate semiamargo rellena de un corazón de menta.",
+        "stock": 13,
+        "imagen": "/images/pure-mint.jpg",
+        "categoria": "Semiamargo"
+    },
+    {
+        "id": 4,
+        "nombre": "Blanca Tropical",
+        "precio": 20000,
+        "destacado": false,
+        "detalle": "Barra de chocolate blanco con tropezones de mango y frutilla deshidratados en frio y avellanas tostadas.",
+        "stock": 6,
+        "imagen": "/images/blanca-tropical.jpg",
+        "categoria": "Blanco"
+    },
+    {
+        "id": 5,
+        "nombre": "Barras Macizas",
+        "precio": 8900,
+        "destacado": false,
+        "detalle": "Barras macizas de nuestro sabroso chocolate disponibles en: CHOCOLATE CON LECHE | CHOCOLATE BLANCO | CHOCOLATE SEMIAMARGO.",
+        "stock": 22,
+        "imagen": "/images/barras-macizas.jpg",
+        "categoria": "Combinado"
+    },
+    {
+        "id": 6,
+        "nombre": "Vamos Argentina",
+        "precio": 32500,
+        "destacado": true,
+        "detalle": "De chocolate blanco pintado a mano. En su interior: confites de chocolate celestes en forma de corazón, tres figuras de chocolate con leche en forma de pelota, medalla y número 10. Peso aprox.: 175gr.",
+        "stock": 5,
+        "imagen": "/images/vamos-argentina.jpg",
+        "categoria": "Blanco"
+    },
+    {
+        "id": 7,
+        "nombre": "Torta Piñata",
+        "precio": 120000,
+        "destacado": true,
+        "detalle": "Hecha de chocolate real, para romper y disfrutar de un montón de golosinas de las primeras marcas.",
+        "stock": 2,
+        "imagen": "/images/torta-pinata.jpg",
+        "categoria": "Combinado"
+    },
+    {
+        "id": 8,
+        "nombre": "Trufas Ed. Mundial",
+        "precio": 17000,
+        "destacado": true,
+        "detalle": "Trufas variadas. Contiene: nueces pecán, almendras y maní.",
+        "stock": 7,
+        "imagen": "/images/trufas-edicion-mundial.jpg",
+        "categoria": "Blanco"
+    },
+    {
+        "id": 9,
+        "nombre": "Maracuyá",
+        "precio": 19000,
+        "destacado": false,
+        "detalle": "Barra de chocolate blanco rellena con un corazón de maracuyá.",
+        "stock": 9,
+        "imagen": "/images/maracuya.jpg",
+        "categoria": "Blanco"
+    },
+    {
+        "id": 10,
+        "nombre": "Rosa Rellena",
+        "precio": 9500,
+        "destacado": false,
+        "detalle": "Rosa rellena con dulce de leche. Armá tu ramo con la cantidad que desees.",
+        "stock": 12,
+        "imagen": "/images/rosa-rellena.jpg",
+        "categoria": "Blanco"
+    },
+    {
+        "id": 11,
+        "nombre": "Malbec Night",
+        "precio": 19000,
+        "destacado": false,
+        "detalle": "Barra de chocolate semiamargo con reducción de Malbec.",
+        "stock": 9,
+        "imagen": "/images/malbec-night.jpg",
+        "categoria": "Semiamargo"
+    },
+    {
+        "id": 12,
+        "nombre": "Barra Almendrada",
+        "precio": 11500,
+        "destacado": false,
+        "detalle": "Barra de chocolate con leche, con almendras tostadas.",
+        "stock": 9,
+        "imagen": "/images/barra-almendrada.jpg",
+        "categoria": "Con leche"
+    }
+]

@@ -1,0 +1,113 @@
+.productoInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem;
+    position: relative;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.volver {
+    font-size: 0.75rem;
+    > a {
+        text-decoration: none;
+        color: var(--accent-comp);
+        &:hover {
+            text-decoration: underline;
+        }
+        > svg {
+            position: relative;
+            top: 4px;
+        }
+    }
+}
+
+.infoDetalle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-block: 1rem;
+}
+
+.imagen {
+    width: 90%;
+    max-width: 400px;
+    border-radius: 0.5rem;
+    margin: 1rem;
+}
+
+.nombre, .precio, .detalle, .volver {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.nombre {
+    font-size: 2rem;
+}
+
+.precio {
+    font-size: 1.75rem;
+    color: var(--accent);
+}
+
+.detalle {
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.btnComprar {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--bg);
+    border: none;
+    border-radius: 0.25rem;
+    background-color: var(--accent);
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    &:hover {
+        filter: brightness(1.3);
+        scale: 1.05;
+    }
+}
+
+.favorito {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    opacity: 1;
+    cursor: pointer;
+    user-select: none;
+    & .favText {
+        font-size: 0.875rem;
+        line-height: 2;
+        opacity: 0.4;
+        padding-left: 0.25rem;
+        position: relative;
+        top: -3px;
+    }
+}
+
+.esFavorito {
+    color: yellow;
+    opacity: 1;
+    text-shadow: 0 0 10px var(--accent-bg);
+    transition: var(--transition);
+}
+
+.noEsFavorito {
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.unidCart {
+    font-size: 0.75rem;
+    color: var(--accent-border);
+}
