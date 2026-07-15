@@ -8,29 +8,26 @@ const GestionProductos = () => {
     const [productos, setProductos] = useState([])
 
     const estadoInicialForm = {
-        id: 13,
+        id: '',
         nombre: '',
         categoria: '',
-        precio: 1,
-        stock: 1,
+        precio: '',
+        stock: '',
         detalle: '',
         imagen: '',
         destacado: false
     }
 
     const [datosForm, setDatosForm] = useState(estadoInicialForm)
-
     const [imagenFile, setImagenFile] = useState(null)
-
     const [loading, setLoading] = useState(null)
-
     const [productoAEditar, setProductoAEditar] = useState(null)
 
     const manejarCambio = (evento) => {
-        const { name, value } = evento.target
+        const { name, value, type, checked } = evento.target
         setDatosForm({
             ...datosForm,
-            [name]: value
+            [name]: type === 'checkbox' ? checked : value
         })
     }
 
@@ -55,10 +52,15 @@ const GestionProductos = () => {
         console.log("ID para eliminar: ", id)
         const confirmacion = window.confirm("¿Está seguro de que desea eliminar este producto?")
         if (confirmacion) {
-            const docRef = doc(db, "productos", id)
-            await deleteDoc(docRef)
-            setProductos(productos.filter(prod => prod.id !== id))
-            alert("Producto eliminado.")
+            try {
+                const docRef = doc(db, "productos", id)
+                await deleteDoc(docRef)
+                setProductos(productos.filter(prod => prod.idFirestore !== id))
+                alert("Producto eliminado con éxito.")
+            } catch (error){
+                console.log("Error al eliminar: ", error)
+                alert("No se pudo eliminar el producto.")
+            }
         }
     }
 
@@ -107,22 +109,23 @@ const GestionProductos = () => {
                 }   
             }
 
+            // eslint-disable-next-line no-unused-vars
+            const { idFirestore, ...restoDatosForm } = datosForm
+
             const productoCompleto = {
-                ...datosForm,
+                ...restoDatosForm,
+                id: Number(datosForm.id),
+                precio: Number(datosForm.precio),
+                stock: Number(datosForm.stock),
                 imagen: urlImagen
             }
 
             console.log('Enviando producto a Firebase:', productoCompleto)
 
-
             const productosCollection = collection(db, "productos")
 
             if (productoAEditar) {
-                const docRef = doc(
-                    db,
-                    "productos",
-                    productoAEditar.idFirestore
-                )
+                const docRef = doc(db, "productos", productoAEditar.idFirestore)
                 await updateDoc(docRef, productoCompleto)
             } else {
                 await addDoc(productosCollection, productoCompleto)
@@ -156,19 +159,19 @@ const GestionProductos = () => {
                 manejarEnvio={manejarEnvio}
                 manejarEditar={manejarEditar}
                 modoEdicion={modoEdicion}
-                Loading={loading}
+                loading={loading}
             />
             <h3 className={styles.h3}>Lista de Productos</h3>
             <ul className={styles.prodEdit}>
                 {productos.map((prod) => (
-                    <li key={prod.id}>
+                    <li key={prod.idFirestore}>
                         <small>ID {prod.id}</small>
                         <img className={styles.imagen} src={prod.imagen} alt={prod.nombre} />
                         <span>{prod.nombre}</span>
                         <span>${prod.precio}</span>
                         <span>Stock: {prod.stock}</span>
                         <button onClick={() => manejarEditar(prod)} className={styles.btnEditar}>Editar</button>
-                        {/* <button onClick={() => handleDelete(prod.idFirestore)} className={styles.btnEliminar}>Eliminar</button> */}
+                        {/* <button onClick={() => handleDelete(prod.id)} className={styles.btnEliminar}>Eliminar</button> */}
                         <button 
                             onClick={() => handleDelete(prod.idFirestore)} 
                             className={styles.btnEliminar}

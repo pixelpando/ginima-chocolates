@@ -9,6 +9,7 @@ const ItemDetalle = () => {
     const { id } = useParams()
     const [producto, setProducto] = useState(null)
     const [esFavorito, setEsFavorito] = useState(false);
+    const [loading, setLoading] = useState(true)
 
     const marcarComoFavorito = () => {
         setEsFavorito(!esFavorito)
@@ -18,30 +19,22 @@ const ItemDetalle = () => {
     const { addToCart } = useCart()
 
     const handleAddToCart = () => {
+        if (!producto) return
         addToCart(producto, cantidad)
         alert(`Agregaste ${cantidad} unidad de ${producto.nombre} al carrito.`)
     }
-    /*
-    useEffect(() => {
-        fetch('/data/productos.json')
-            .then(response => response.json())
-            .then(data => {
-                const productoEncontrado = data.find(p => p.id === parseInt(id))
-                setProducto(productoEncontrado)
-            })
-            .catch(error => console.error("Error al cargar el producto:", error))
-    }, [id])
-    */
 
     useEffect(() => {
         if (!id) return
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setLoading(true)
         // Para buscar por id de Firestore
         // const docRef = doc(db, "productos", id);
         
         // Para buscar por id del producto
         const queryId = query(
             collection(db, "productos"),
-            where("id", "==", Number(id))
+            where("id", "in", [id, Number(id)])
         )
 
         getDocs(queryId)
@@ -62,7 +55,7 @@ const ItemDetalle = () => {
     }, [id])
 
 
-    if (!producto) {
+    if (loading) {
         return <p style={{ margin: '3rem', color: 'white' }}>Cargando detalle del producto...</p>
     }
     
@@ -89,4 +82,4 @@ const ItemDetalle = () => {
     )
 }
 
-export default ItemDetalle;
+export default ItemDetalle

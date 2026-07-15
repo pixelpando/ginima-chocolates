@@ -23,6 +23,7 @@ function FormularioProducto({
                     min="1"
                     value={datosForm.id}
                     onChange={manejarCambio}
+                    required
                 />
                 <small>ATENCIÓN: No usar un mismo ID en los productos.</small>
             </div>
@@ -34,6 +35,18 @@ function FormularioProducto({
                     name="nombre"
                     value={datosForm.nombre}
                     onChange={manejarCambio}
+                    required
+                />
+            </div>
+            <div>
+                <label>Categoria</label>
+                <input
+                    type="text"
+                    placeholder="Ej: Semiamargo"
+                    name="categoria"
+                    value={datosForm.categoria}
+                    onChange={manejarCambio}
+                    required
                 />
             </div>
             <div>
@@ -44,6 +57,7 @@ function FormularioProducto({
                     name="detalle"
                     value={datosForm.detalle}
                     onChange={manejarCambio}
+                    required
                 />
             </div>
             <div>
@@ -54,6 +68,7 @@ function FormularioProducto({
                     name="precio"
                     value={datosForm.precio}
                     onChange={manejarCambio}
+                    required
                 />
             </div>
             <div>
@@ -62,17 +77,18 @@ function FormularioProducto({
                     type="number"
                     placeholder="Ej. 7"
                     name="stock"
-                    min="1"
+                    min="0"
                     value={datosForm.stock}
                     onChange={manejarCambio}
+                    required
                 />
             </div>
             <div>
                 <label>Imagen</label>
                 <input
                     type="file"
-                    placeholder="https://..."
                     onChange={manejarCambioImagen}
+                    required={!modoEdicion}
                 />
             </div>
             <button
