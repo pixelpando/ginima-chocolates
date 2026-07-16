@@ -81,3 +81,12 @@
         }
     }
 }
+
+.link {
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--accent-comp);
+    &:hover {
+        text-decoration: underline;
+    }
+}

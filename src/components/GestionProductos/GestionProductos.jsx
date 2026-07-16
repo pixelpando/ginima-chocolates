@@ -1,8 +1,9 @@
 import styles from './GestionProductos.module.css'
 import { useState, useEffect } from 'react'
 import { db } from '../../firebase/config.js'
-import { collection, getDocs, deleteDoc, doc, addDoc, updateDoc } from "firebase/firestore"
+import { collection, getDocs, deleteDoc, doc, addDoc, updateDoc, query, where } from "firebase/firestore"
 import FormularioProducto from '../FormularioProducto/FormularioProducto.jsx'
+import { Link } from 'react-router-dom'
 
 const GestionProductos = () => {
     const [productos, setProductos] = useState([])
@@ -19,12 +20,10 @@ const GestionProductos = () => {
     }
 
     const [datosForm, setDatosForm] = useState(estadoInicialForm)
-
     const [imagenFile, setImagenFile] = useState(null)
-
     const [loading, setLoading] = useState(null)
-
     const [productoAEditar, setProductoAEditar] = useState(null)
+    const [skuDuplicado, setSkuDuplicado] = useState(false)
 
     const manejarCambio = (evento) => {
         const { name, value } = evento.target
@@ -32,6 +31,10 @@ const GestionProductos = () => {
             ...datosForm,
             [name]: value
         })
+
+        if (name === 'sku') {
+            setSkuDuplicado(false)
+        }
     }
 
     const manejarCambioImagen = (evento) => {
@@ -74,9 +77,17 @@ const GestionProductos = () => {
     const manejarEditar = (producto) => {
         setProductoAEditar(producto)
         setDatosForm(producto)
+        setSkuDuplicado(false)
     }
 
     const modoEdicion = productoAEditar !== null
+
+    const verificarSkuDuplicado = async (skuConsultar) => {
+        const productosRef = collection(db, "productos")
+        const q = query(productosRef, where("sku", "==", Number(skuConsultar)))
+        const querySnapshot = await getDocs(q)
+        return !querySnapshot.empty
+    }
 
     const manejarEnvio = async (evento) => {
         evento.preventDefault()
@@ -89,9 +100,20 @@ const GestionProductos = () => {
         setLoading(true)
         console.log("Loading...")
 
-        let urlImagen = datosForm.imagen
+        // let urlImagen = datosForm.imagen
 
         try {
+            if (!modoEdicion) {
+                const existeSku = await verificarSkuDuplicado(datosForm.sku)
+                if (existeSku) {
+                    setSkuDuplicado(true)
+                    setLoading(false)
+                    return
+                }
+            }
+
+            let urlImagen = datosForm.imagen
+            
             if (imagenFile) {
                 console.log('Subiendo imagen a Imgbb...')
 
@@ -141,6 +163,7 @@ const GestionProductos = () => {
             setDatosForm(estadoInicialForm)
             setImagenFile(null)
             setProductoAEditar(null)
+            setSkuDuplicado(false)
 
         } catch (error) {
             console.error('Error en el proceso de envío:', error)
@@ -162,6 +185,7 @@ const GestionProductos = () => {
                 manejarEditar={manejarEditar}
                 modoEdicion={modoEdicion}
                 loading={loading}
+                skuDuplicado={skuDuplicado}
             />
             <h3 className={styles.h3}>Lista de Productos</h3>
             <ul className={styles.prodEdit}>
@@ -173,15 +197,14 @@ const GestionProductos = () => {
                             {/* <small>{prod.id}</small> */}
                         </div>
                         <img className={styles.imagen} src={prod.imagen} alt={prod.nombre} />
-                        <span>{prod.nombre}</span>
+                        <Link className={styles.link} to={`/productos/${prod.sku}`} target='_blank'>{prod.nombre}</Link>
                         <span>${prod.precio}</span>
                         <span>Stock: {prod.stock}</span>
                         <button onClick={() => manejarEditar(prod)} className={styles.btnEditar}>Editar</button>
-                        {/* <button onClick={() => handleDelete(prod.id)} className={styles.btnEliminar}>Eliminar</button> */}
                         <button 
-                            onClick={() => handleDelete(prod.id)} 
+                            onClick={() => handleDelete(prod.id)}
                             className={styles.btnEliminar}
-                            disabled={prod.sku && Number(prod.id) <= 12}
+                            disabled={prod.sku && Number(prod.sku) <= 12}
                         >
                             Eliminar
                         </button>

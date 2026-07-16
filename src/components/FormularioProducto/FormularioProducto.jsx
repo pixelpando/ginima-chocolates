@@ -6,7 +6,8 @@ function FormularioProducto({
     manejarEnvio,
     manejarCambioImagen,
     loading,
-    modoEdicion
+    modoEdicion,
+    skuDuplicado
 }) {
     // console.log(datosForm);
     return (
@@ -26,12 +27,21 @@ function FormularioProducto({
                     onChange={manejarCambio}
                     required
                     disabled={modoEdicion}
+                    style={skuDuplicado ? {borderColor: '#e74c3c'} : {}}
                 />
-                {modoEdicion ? (
-                    <small>El SKU no se puede modificar porque identifica al producto en la URL.</small>
-                ) : (    
-                    <small>Ingrese solo números sin espacios ni guiones.</small>
+
+                {skuDuplicado && (
+                    <p style={{ color: '#e74c3c', fontSize: '0.85rem', margin: '5px 0 0', fontWeight: 'bold' }}>
+                        🚫 Este SKU ya está en uso. Por favor elija otro.
+                    </p>
                 )}
+
+                {modoEdicion ? (
+                    <small>⚠️ El SKU no puede modificarse porque se utiliza en la URL.</small>
+                ) : (    
+                    !skuDuplicado && <small>Ingrese solo números sin espacios ni guiones.</small>
+                )}
+
             </div>
             <div>
                 <label>Nombre del producto</label>
