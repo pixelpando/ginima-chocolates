@@ -15,17 +15,23 @@ function FormularioProducto({
                 {modoEdicion ? "Editar Producto" : "Agregar nuevo producto"}
             </h3>
             <div>
-                <label>ID</label>
+                <label>SKU</label>
                 <input
-                    type="number"
-                    placeholder="Ej: 25"
-                    name="id"
-                    min="1"
-                    value={datosForm.id}
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]+"
+                    placeholder="Ej: 2856"
+                    name="sku"
+                    value={datosForm.sku || ''}
                     onChange={manejarCambio}
                     required
+                    disabled={modoEdicion}
                 />
-                <small>ATENCIÓN: No usar un mismo ID en los productos.</small>
+                {modoEdicion ? (
+                    <small>El SKU no se puede modificar porque identifica al producto en la URL.</small>
+                ) : (    
+                    <small>Ingrese solo números sin espacios ni guiones.</small>
+                )}
             </div>
             <div>
                 <label>Nombre del producto</label>
@@ -66,6 +72,7 @@ function FormularioProducto({
                     type="number"
                     placeholder="Ej: 15000"
                     name="precio"
+                    min="0"
                     value={datosForm.precio}
                     onChange={manejarCambio}
                     required

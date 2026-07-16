@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../../../context/CartContext.jsx'
 
-export function Item({ id, nombre, precio, stock, imagen }) {
-    const producto = { id, nombre, precio, stock, imagen }
+export function Item({ sku, nombre, precio, stock, imagen, idFirestore }) {
+    const producto = { id: idFirestore || sku, sku, nombre, precio, stock, imagen }
 
     const [cantidad, setCantidad] = useState(1)
 
@@ -40,11 +40,11 @@ export function Item({ id, nombre, precio, stock, imagen }) {
             <span className={styles.favorito} onClick={marcarComoFavorito}>
                 {esFavorito ? <span className={styles.esFavorito}>★</span> : <span className={styles.noEsFavorito}>☆</span>}
             </span>
-            <img className={styles.imagen} src={imagen} alt="Duo Pistacho" />
+            <img className={styles.imagen} src={imagen} alt={nombre} />
             <h3 className={styles.nombre}>{nombre}</h3>
             <p className={styles.precio}>$ {precio}</p>
             <p className={styles.stock}>En stock: <strong>{stock}</strong></p>
-            <p className={styles.vermas}><Link className={styles.link} to={`/productos/${id}`}>Ver más info</Link></p>
+            <p className={styles.vermas}><Link className={styles.link} to={`/productos/${sku}`}>Ver más info</Link></p>
             <div>
                 <button className={styles.btn} onClick={decrementar}>-</button>
                 <span className={styles.cantidad}><strong>{cantidad}</strong></span>

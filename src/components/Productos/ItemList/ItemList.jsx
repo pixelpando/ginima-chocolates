@@ -5,7 +5,10 @@ function ItemList({ productos }) {
     return (
         <div className={styles.flex}>
             {productos.map(prod => (
-                <Item key={prod.id} {...prod} />
+                <Item
+                    key={prod.id}
+                    {...prod}
+                />
             ))}
         </div>
     )

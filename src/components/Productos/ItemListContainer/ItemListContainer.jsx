@@ -18,7 +18,11 @@ function ItemListContainer({ Mensaje, Destacados }) {
             .then((resp) => {
                 setProductos(
                     resp.docs.map((doc) => {
-                        return { id: doc.id, ...doc.data() }
+                        return {
+                            id: doc.id,
+                            idFirestore: doc.id,
+                            ...doc.data()
+                        }
                     })
                 )
             })
