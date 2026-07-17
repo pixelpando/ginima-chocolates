@@ -43,7 +43,8 @@ export function Item({ sku, nombre, precio, stock, imagen, idFirestore }) {
             <img className={styles.imagen} src={imagen} alt={nombre} />
             <h3 className={styles.nombre}>{nombre}</h3>
             <p className={styles.precio}>$ {precio}</p>
-            <p className={styles.stock}>En stock: <strong>{stock}</strong></p>
+            <p className={styles.stock}>En stock: <strong>{stock}</strong> <span style={{color: 'var(--border)'}}>|</span> SKU <strong>{sku}</strong></p>
+            {/* <small>SKU <strong>{sku}</strong></small> */}
             <p className={styles.vermas}><Link className={styles.link} to={`/productos/${sku}`}>Ver más info</Link></p>
             <div>
                 <button className={styles.btn} onClick={decrementar}>-</button>

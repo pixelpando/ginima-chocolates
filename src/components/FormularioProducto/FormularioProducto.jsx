@@ -7,22 +7,30 @@ function FormularioProducto({
     manejarCambioImagen,
     loading,
     modoEdicion,
-    skuDuplicado
+    skuDuplicado,
+    handleCancelar
 }) {
     // console.log(datosForm);
     return (
-        <form className={styles.formulario} onSubmit={manejarEnvio}>
+        <form
+            className={styles.formulario}
+            onSubmit={manejarEnvio}
+            style={{
+                border: skuDuplicado ? '1px solid #e74c3c' : ''
+            }}
+        >
             <h3>
                 {modoEdicion ? "Editar Producto" : "Agregar nuevo producto"}
             </h3>
             <div>
-                <label>SKU</label>
+                <label htmlFor="sku">SKU</label>
                 <input
                     type="text"
                     inputMode="numeric"
                     pattern="[0-9]+"
                     placeholder="Ej: 2856"
                     name="sku"
+                    id="sku"
                     value={datosForm.sku || ''}
                     onChange={manejarCambio}
                     required
@@ -31,57 +39,61 @@ function FormularioProducto({
                 />
 
                 {skuDuplicado && (
-                    <p style={{ color: '#e74c3c', fontSize: '0.85rem', margin: '5px 0 0', fontWeight: 'bold' }}>
+                    <p className={styles.skuDuplicado}>
                         🚫 Este SKU ya está en uso. Por favor elija otro.
                     </p>
                 )}
 
                 {modoEdicion ? (
-                    <small>⚠️ El SKU no puede modificarse porque se utiliza en la URL.</small>
+                    <small>⚠️ El SKU no puede modificarse porque se utiliza en la URL. Para modificarlo debes crear un <em>producto nuevo</em>.</small>
                 ) : (    
                     !skuDuplicado && <small>Ingrese solo números sin espacios ni guiones.</small>
                 )}
 
             </div>
             <div>
-                <label>Nombre del producto</label>
+                <label htmlFor="nombre">Nombre del producto</label>
                 <input
                     type="text"
                     placeholder="Ej: Barra de chocolate con leche"
                     name="nombre"
+                    id="nombre"
                     value={datosForm.nombre}
                     onChange={manejarCambio}
                     required
                 />
             </div>
             <div>
-                <label>Categoria</label>
+                <label htmlFor="categoria">Categoría</label>
                 <input
                     type="text"
                     placeholder="Ej: Semiamargo"
                     name="categoria"
+                    id="categoria"
                     value={datosForm.categoria}
                     onChange={manejarCambio}
                     required
                 />
             </div>
             <div>
-                <label>Detalle</label>
+                <label htmlFor="detalle">Detalle</label>
                 <textarea
                     type="text"
                     placeholder="Ej: Barra de chocolate con leche cubierto con una crocante capa de almendras acarameladas..."
                     name="detalle"
+                    id="detalle"
                     value={datosForm.detalle}
                     onChange={manejarCambio}
                     required
                 />
             </div>
             <div>
-                <label>Precio</label>
+                <label htmlFor="precio">Precio</label>
                 <input
                     type="number"
                     placeholder="Ej: 15000"
                     name="precio"
+                    id="precio"
                     min="0"
                     value={datosForm.precio}
                     onChange={manejarCambio}
@@ -89,11 +101,12 @@ function FormularioProducto({
                 />
             </div>
             <div>
-                <label>Stock</label>
+                <label htmlFor="stock">Stock</label>
                 <input
                     type="number"
                     placeholder="Ej. 7"
                     name="stock"
+                    id="stock"
                     min="0"
                     value={datosForm.stock}
                     onChange={manejarCambio}
@@ -101,11 +114,22 @@ function FormularioProducto({
                 />
             </div>
             <div>
-                <label>Imagen</label>
+                <label htmlFor="imagen">Imagen</label>
                 <input
                     type="file"
+                    id="imagen"
                     onChange={manejarCambioImagen}
                     required={!modoEdicion}
+                />
+            </div>
+            <div className={styles.checkbox}>
+                <label htmlFor="destacado">Producto Destacado</label>
+                <input
+                    type="checkbox"
+                    name="destacado"
+                    id="destacado"
+                    checked={!!datosForm.destacado}
+                    onChange={manejarCambio}
                 />
             </div>
             <button
@@ -120,6 +144,14 @@ function FormularioProducto({
                             ?  "Actualizar Producto"
                             : "Guardar Producto"
                 }
+            </button>
+            <button
+                className={styles.btnCancelar}
+                type="button"
+                disabled={loading}
+                onClick={handleCancelar}
+            >
+                {modoEdicion ? "Salir del modo Edición" : "Limpiar formulario"}
             </button>
         </form>
     )

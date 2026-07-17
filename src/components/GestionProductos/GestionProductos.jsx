@@ -26,10 +26,10 @@ const GestionProductos = () => {
     const [skuDuplicado, setSkuDuplicado] = useState(false)
 
     const manejarCambio = (evento) => {
-        const { name, value } = evento.target
+        const { name, value, type, checked } = evento.target
         setDatosForm({
             ...datosForm,
-            [name]: value
+            [name]: type === 'checkbox' ? checked : value
         })
 
         if (name === 'sku') {
@@ -66,12 +66,19 @@ const GestionProductos = () => {
                 const docRef = doc(db, "productos", id)
                 await deleteDoc(docRef)
                 setProductos(productos.filter(prod => prod.id !== id))
-                alert("Producto eliminado.")
+                alert("Producto eliminado con éxito.")
             } catch (error) {
                 console.error("Error al eliminar el producto:", error)
                 alert("No se pudo eliminar el producto de la base de datos.")
             }
         }
+    }
+
+    const handleCancelar= () => {
+        setDatosForm(estadoInicialForm)
+        setProductoAEditar(null)
+        setImagenFile(null)
+        setSkuDuplicado(false)
     }
     
     const manejarEditar = (producto) => {
@@ -171,6 +178,7 @@ const GestionProductos = () => {
         }
         finally {
             setLoading(false)
+            alert("El producto se ha guardado correctamente")
         }
     }
 
@@ -186,28 +194,35 @@ const GestionProductos = () => {
                 modoEdicion={modoEdicion}
                 loading={loading}
                 skuDuplicado={skuDuplicado}
+                handleCancelar={handleCancelar}
             />
             <h3 className={styles.h3}>Lista de Productos</h3>
+            <div style={{marginBottom: '2rem'}}>
+                <p><small><strong>Aclaración:</strong> Los productos de <em>stock permanente</em> no se pueden eliminar.</small></p>
+                <p><small><span style={{fontSize: '1.25rem'}}>🥇</span>: Producto destacado</small></p>
+            </div>
             <ul className={styles.prodEdit}>
                 {productos.map((prod) => (
                     <li key={prod.id}>
-                        {/* <small>ID {prod.id}</small> */}
                         <div className={styles.sku}>
-                            <small>{prod.sku || 'Sin SKU'}</small>
+                            <small>SKU <strong>{prod.sku || 'Sin SKU'}</strong></small>
                             {/* <small>{prod.id}</small> */}
                         </div>
                         <img className={styles.imagen} src={prod.imagen} alt={prod.nombre} />
+                        <span style={{fontSize: '1.25rem'}}>{prod.destacado === true ? <span>🥇</span> : <span style={{opacity: 0.1}}>🥇</span>}</span>
                         <Link className={styles.link} to={`/productos/${prod.sku}`} target='_blank'>{prod.nombre}</Link>
                         <span>${prod.precio}</span>
                         <span>Stock: {prod.stock}</span>
-                        <button onClick={() => manejarEditar(prod)} className={styles.btnEditar}>Editar</button>
-                        <button 
-                            onClick={() => handleDelete(prod.id)}
-                            className={styles.btnEliminar}
-                            disabled={prod.sku && Number(prod.sku) <= 12}
-                        >
-                            Eliminar
-                        </button>
+                        <div>
+                            <button onClick={() => manejarEditar(prod)} className={styles.btnEditar}>Editar</button>
+                            <button 
+                                onClick={() => handleDelete(prod.id)}
+                                className={styles.btnEliminar}
+                                disabled={prod.sku && Number(prod.sku) <= 12}
+                            >
+                                Eliminar
+                            </button>
+                        </div>
                     </li>
                 ))}
             </ul>
