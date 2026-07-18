@@ -6,6 +6,7 @@ import Productos from './components/Productos/Productos.jsx'
 import ItemDetalle from './components/Productos/ItemDetalle/ItemDetalle.jsx'
 import Cart from './components/Cart/Cart.jsx'
 import GestionProductos from './components/GestionProductos/GestionProductos.jsx'
+import GestionCupones from './components/GestionCupones/GestionCupones.jsx'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/productos' element={<Productos />} />
         <Route path='/productos/:sku' element={<ItemDetalle />} />
         <Route path='/gestion' element={<GestionProductos />} />
+        <Route path='/gestionCupones' element={<GestionCupones />} />
         <Route path='/cart' element={<Cart />} />
       </Route>
     </Routes>

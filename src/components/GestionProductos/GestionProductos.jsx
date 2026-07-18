@@ -172,6 +172,8 @@ const GestionProductos = () => {
             setProductoAEditar(null)
             setSkuDuplicado(false)
 
+            evento.target.reset(); // Borra la ruta de la imagen cargada
+
         } catch (error) {
             console.error('Error en el proceso de envío:', error)
             alert('Hubo un error al subir la imagen. Por favor, intentá de nuevo.')
