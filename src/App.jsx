@@ -16,7 +16,7 @@ function App() {
         <Route path='/productos' element={<Productos />} />
         <Route path='/productos/:sku' element={<ItemDetalle />} />
         <Route path='/gestion' element={<GestionProductos />} />
-        <Route path='/gestionCupones' element={<GestionCupones />} />
+        <Route path='/admin/cupones' element={<GestionCupones />} />
         <Route path='/cart' element={<Cart />} />
       </Route>
     </Routes>

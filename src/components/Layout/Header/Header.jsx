@@ -36,7 +36,7 @@ function Header() {
                         <li><Link to="/" onClick={toggleMenu}>Inicio</Link></li>
                         <li><Link to="/productos" onClick={toggleMenu}>Productos</Link></li>
                         <li><Link to="/gestion" onClick={toggleMenu}>Gestión Productos</Link></li>
-                        <li><Link to="/gestionCupones" onClick={toggleMenu}>Gestión Cupones</Link></li>
+                        <li><Link to="/admin/cupones" onClick={toggleMenu}>Gestión Cupones</Link></li>
                         <li><Link to="/cart" onClick={toggleMenu} aria-label="Carrito de compras">{iconCart} {totalItems > 0 && <span className={styles.totalItems}>{totalItems}</span>}</Link></li>
                     </ul>
                 </nav>
