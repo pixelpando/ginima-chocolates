@@ -1,3 +1,4 @@
+import styles from './Login.module.css'
 import { useState } from 'react'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase/config.js'
@@ -27,29 +28,35 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className={styles.iniciarSesion}>
             <h2>Iniciar Sesión</h2>
-            <form onSubmit={handleLogin}>
-                <input
-                    type="email"
-                    name="email"
-                    autoComplete="true"
+            <form onSubmit={handleLogin} className={styles.formulario}>
+                <div>
+                    <label htmlFor="email">Correo electrónico</label>
+                    <input
+                        type="email"
+                        id="email"
+                        autoComplete="true"
 
-                    placeholder="Correo electrónico"
+                        placeholder="Correo electrónico"
 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                    type="password"
-                    name="password"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Contraseña</label>
+                    <input
+                        type="password"
+                        id="password"
 
-                    placeholder="Contraseña"
-                    value={password}
+                        placeholder="Contraseña"
+                        value={password}
 
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button type="submit">Ingresar</button>
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+                <button type="submit" className={styles.btnIngresar}>Ingresar</button>
             </form>
         </div>
     )
