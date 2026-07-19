@@ -95,9 +95,10 @@
 
 .cupones {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    grid-template-columns: repeat(auto-fit, 25ch);
     gap: 2rem;
     margin-inline: 3rem;
+    justify-content: center;
 }
 
 .cupon {
