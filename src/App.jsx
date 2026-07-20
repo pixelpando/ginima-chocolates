@@ -9,6 +9,7 @@ import GestionProductos from './components/GestionProductos/GestionProductos.jsx
 import GestionCupones from './components/GestionCupones/GestionCupones.jsx'
 import Login from './components/Login/Login.jsx'
 import Registro from './components/Registro/Registro.jsx'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx'
 
 function App() {
   return (
@@ -17,11 +18,25 @@ function App() {
         <Route path='/' element={<Inicio />} />
         <Route path='/productos' element={<Productos />} />
         <Route path='/productos/:sku' element={<ItemDetalle />} />
-        <Route path='/gestion/productos' element={<GestionProductos />} />
-        <Route path='/gestion/cupones' element={<GestionCupones />} />
+        {/* <Route path='/gestion/productos' element={<GestionProductos />} /> */}
+        {/* <Route path='/gestion/cupones' element={<GestionCupones />} /> */}
         <Route path='/login' element={<Login />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/registro' element={<Registro />} />
+
+        <Route path='/gestion/productos' element={
+            <ProtectedRoute rolesPermitidos={["admin"]}>
+              <GestionProductos />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path='/gestion/cupones' element={
+            <ProtectedRoute rolesPermitidos={["admin"]}>
+              <GestionCupones />
+            </ProtectedRoute>
+          }
+        />
       </Route>
     </Routes>
   )

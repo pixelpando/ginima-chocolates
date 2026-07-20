@@ -31,6 +31,11 @@ const Login = () => {
     return (
         <div className={styles.iniciarSesion}>
             <h2>Iniciar Sesión</h2>
+            
+            <div className={styles.adminImg}>
+                <p>Ver datos Admin</p>
+            </div>
+
             <form onSubmit={handleLogin} className={styles.formulario}>
                 <div>
                     <label htmlFor="email">Correo electrónico</label>
@@ -59,10 +64,6 @@ const Login = () => {
                 </div>
                 <button type="submit" className={styles.btnIngresar}>Ingresar</button>
             </form>
-
-            <div className={styles.adminImg}>
-                <p>Ver datos Admin</p>
-            </div>
 
             <p>¿No tenés una cuenta? <Link to="/registro">Registrate aquí</Link></p>
 

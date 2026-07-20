@@ -81,8 +81,9 @@
 .adminImg {
     max-width: 400px;
     border-radius: 0.5rem;
-    margin: 1rem;
+    margin: auto;
     cursor: pointer;
+    scale: 0.75;
     transition: var(--transition);
     > p {
         text-decoration: underline;
@@ -92,5 +93,6 @@
     }
     &:active {
         content: url(/public/images/admin_pass.jpg);
+        scale: 1;
     }
 }
