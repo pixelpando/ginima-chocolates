@@ -51,7 +51,7 @@ const Registro = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
 
-                        placeholder="Correo Electrónico"
+                        placeholder="Ej.: user@gmail.com"
                     />
                 </div>
                 <div>
@@ -64,7 +64,7 @@ const Registro = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         required
 
-                        placeholder="Mínimo 6 caracteres"
+                        placeholder="Mínimo 6 caracteres. Ej.: user1234"
                     />
                 </div>
                 {error && <p className="error-message">{error}</p>}
