@@ -184,7 +184,7 @@ const GestionCupones = () => {
                             <p>Código</p>
                             <span>{cupon.codigo}</span>
                             <p>Descuento</p>
-                            <span>{cupon.descuento}%</span>
+                            <span className={styles.descuento}>{cupon.descuento}%</span>
                             <div>
                                 <button onClick={() => editarCupon(cupon)} className={styles.btnEditar}>
                                     Editar

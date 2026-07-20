@@ -118,6 +118,15 @@
         background-color: var(--accent);
         border-radius: 0.25rem;
         padding: 0.125rem 0.5rem;
+
+        &.descuento {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 3.5rem;
+            color: var(--accent-comp);
+            background-color: transparent;
+            text-shadow: 2px 3px 5px #0009;
+        }
     }
     & p {
         margin-top: 0.5rem;
