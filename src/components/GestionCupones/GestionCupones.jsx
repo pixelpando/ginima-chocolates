@@ -137,32 +137,35 @@ const GestionCupones = () => {
 
             <form className={styles.formulario} onSubmit={manejarEnvio}>
                 <h3>Agregar nuevo cupón</h3>
-                <div>
-                    <label htmlFor="codigo">Código</label>
-                    <input
-                        type="text"
-                        placeholder="Código"
-                        required
-                        name='codigo'
-                        id='codigo'
-                        value={datosForm.codigo}
-                        onChange={manejarCambio}
-                    />
-                </div>
+                
+                <div style={{display: 'flex', gap: '1rem'}}>
+                    <div>
+                        <label htmlFor="codigo">Código</label>
+                        <input
+                            type="text"
+                            placeholder="Ej.: PRIMAVERA35"
+                            required
+                            name='codigo'
+                            id='codigo'
+                            value={datosForm.codigo}
+                            onChange={manejarCambio}
+                        />
+                    </div>
 
-                <div>
-                    <label htmlFor="descuento">Descuento</label>
-                    <input
-                        type="number"
-                        placeholder="Descuento"
-                        min="1"
-                        max="100"
-                        required
-                        name='descuento'
-                        id='descuento'
-                        value={datosForm.descuento}
-                        onChange={manejarCambio}
-                    />
+                    <div>
+                        <label htmlFor="descuento">Descuento</label>
+                        <input
+                            type="number"
+                            placeholder="Ej.: 35"
+                            min="1"
+                            max="100"
+                            required
+                            name='descuento'
+                            id='descuento'
+                            value={datosForm.descuento}
+                            onChange={manejarCambio}
+                        />
+                    </div>
                 </div>
 
                 <button className={styles.btnGuardar} type="submit">
