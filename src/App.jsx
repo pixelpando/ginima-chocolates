@@ -8,6 +8,7 @@ import Cart from './components/Cart/Cart.jsx'
 import GestionProductos from './components/GestionProductos/GestionProductos.jsx'
 import GestionCupones from './components/GestionCupones/GestionCupones.jsx'
 import Login from './components/Login/Login.jsx'
+import Registro from './components/Registro/Registro.jsx'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/gestion/cupones' element={<GestionCupones />} />
         <Route path='/login' element={<Login />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/registro' element={<Registro />} />
       </Route>
     </Routes>
   )

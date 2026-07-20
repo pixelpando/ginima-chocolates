@@ -3,6 +3,13 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
+    & a {
+        text-decoration: none;
+        color: var(--accent-comp);
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 .formulario {
@@ -68,5 +75,22 @@
 
     &:hover {
         filter: brightness(1.2);
+    }
+}
+
+.adminImg {
+    max-width: 400px;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    > p {
+        text-decoration: underline;
+    }
+    &:hover {
+        color: var(--accent);
+    }
+    &:active {
+        content: url(/public/images/admin_pass.jpg);
     }
 }

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase/config.js'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -17,7 +18,7 @@ const Login = () => {
                 const user = userCredential.user
                 console.log("Usuario logueado:", user)
                 alert("¡Inicio de sesión exitoso!")
-                navigate('/') //
+                navigate('/')
             })
             .catch((error) => {
                 const errorCode = error.code
@@ -32,7 +33,7 @@ const Login = () => {
             <h2>Iniciar Sesión</h2>
             <form onSubmit={handleLogin} className={styles.formulario}>
                 <div>
-                    <label htmlFor="email">Correo electrónico: admin@gmail.com</label>
+                    <label htmlFor="email">Correo electrónico</label>
                     <input
                         type="email"
                         id="email"
@@ -45,7 +46,7 @@ const Login = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="password">Contraseña: admin1234</label>
+                    <label htmlFor="password">Contraseña</label>
                     <input
                         type="password"
                         id="password"
@@ -58,6 +59,13 @@ const Login = () => {
                 </div>
                 <button type="submit" className={styles.btnIngresar}>Ingresar</button>
             </form>
+
+            <div className={styles.adminImg}>
+                <p>Ver datos Admin</p>
+            </div>
+
+            <p>¿No tenés una cuenta? <Link to="/registro">Registrate aquí</Link></p>
+
         </div>
     )
 }

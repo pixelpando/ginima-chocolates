@@ -8,7 +8,6 @@ import { useAuth } from '../../../context/AuthContext'
 function Header() {
     const { getCartQuantity } = useCart()
 
-    // Agregamos los datos de autenticación
     const { user, logout } = useAuth()
 
     const totalItems = getCartQuantity()
@@ -46,13 +45,12 @@ function Header() {
                         {user ? (
                             <>
                                 {user.rol === 'admin' && (
-                                     <li><Link to="/gestion/productos" onClick={toggleMenu}>Gestión Productos</Link></li>)}
-                                <li><Link to="/gestion/cupones" onClick={toggleMenu}>Gestión Cupones</Link></li>
-                                <span
-                                    style={{
-                                        fontSize: '0.75rem',
-                                        color: 'black'
-                                    }}>¡Hola,<br></br>{user.email}!</span>
+                                    <>
+                                        <li><Link to="/gestion/productos" onClick={toggleMenu}>Gestión Productos</Link></li>
+                                        <li><Link to="/gestion/cupones" onClick={toggleMenu}>Gestión Cupones</Link></li>
+                                    </>
+                                )}
+                                <span style={{fontSize: '0.75rem', color: 'black'}}>¡Hola,<br></br><strong>{user.email}</strong>!</span>
                                 <button onClick={logout}>Cerrar Sesión</button>
                             </>
                         ) : (
