@@ -32,7 +32,7 @@ const Login = () => {
             <h2>Iniciar Sesión</h2>
             <form onSubmit={handleLogin} className={styles.formulario}>
                 <div>
-                    <label htmlFor="email">Correo electrónico</label>
+                    <label htmlFor="email">Correo electrónico: admin@gmail.com</label>
                     <input
                         type="email"
                         id="email"
@@ -45,7 +45,7 @@ const Login = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="password">Contraseña</label>
+                    <label htmlFor="password">Contraseña: admin1234</label>
                     <input
                         type="password"
                         id="password"

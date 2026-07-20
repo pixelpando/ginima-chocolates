@@ -16,8 +16,8 @@ function App() {
         <Route path='/' element={<Inicio />} />
         <Route path='/productos' element={<Productos />} />
         <Route path='/productos/:sku' element={<ItemDetalle />} />
-        <Route path='/admin/productos' element={<GestionProductos />} />
-        <Route path='/admin/cupones' element={<GestionCupones />} />
+        <Route path='/gestion/productos' element={<GestionProductos />} />
+        <Route path='/gestion/cupones' element={<GestionCupones />} />
         <Route path='/login' element={<Login />} />
         <Route path='/cart' element={<Cart />} />
       </Route>
