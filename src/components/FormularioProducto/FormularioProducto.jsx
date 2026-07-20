@@ -45,7 +45,7 @@ function FormularioProducto({
                 )}
 
                 {modoEdicion ? (
-                    <small>⚠️ El SKU no puede modificarse porque se utiliza en la URL. Para modificarlo debes crear un <em>producto nuevo</em>.</small>
+                    <small>⚠️ El SKU no puede modificarse porque se utiliza en la URL. Para cambiarlo debes crear un <em>producto nuevo</em>.</small>
                 ) : (    
                     !skuDuplicado && <small>Ingrese solo números sin espacios ni guiones.</small>
                 )}
@@ -145,14 +145,17 @@ function FormularioProducto({
                             : "Guardar Producto"
                 }
             </button>
-            <button
-                className={styles.btnCancelar}
-                type="button"
-                disabled={loading}
-                onClick={handleCancelar}
-            >
-                {modoEdicion ? "Salir del modo Edición" : "Limpiar formulario"}
-            </button>
+
+            {modoEdicion &&
+                <button
+                    className={styles.btnCancelar}
+                    type="button"
+                    disabled={loading}
+                    onClick={handleCancelar}
+                >
+                    Cancelar
+                </button>
+            }
         </form>
     )
 }
