@@ -74,6 +74,24 @@
     left: 0.875rem;
 }
 
+.user {
+    font-size: 0.75rem;
+    color: var(--bg-darker);
+}
+
+.btnSesion {
+    color: var(--text-h);
+    background-color: var(--bg);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    &:hover {
+        filter: brightness(1.2);
+    }
+}
+
 @media (max-width: 768px) {
     .hamburger {
         display: flex;

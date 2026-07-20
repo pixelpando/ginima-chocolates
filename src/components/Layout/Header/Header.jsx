@@ -50,8 +50,8 @@ function Header() {
                                         <li><Link to="/gestion/cupones" onClick={toggleMenu}>Gestión Cupones</Link></li>
                                     </>
                                 )}
-                                <span style={{fontSize: '0.75rem', color: 'black'}}>¡Hola,<br></br><strong>{user.email}</strong>!</span>
-                                <button onClick={logout}>Cerrar Sesión</button>
+                                <span className={styles.user}>¡Hola,<br></br><strong>{user.email}</strong>!</span>
+                                <button className={styles.btnSesion} onClick={logout}>Cerrar Sesión</button>
                             </>
                         ) : (
                             <li><Link to="/login" onClick={toggleMenu}>Login</Link></li>

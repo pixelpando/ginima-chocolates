@@ -1,3 +1,4 @@
+import styles from './Registro.module.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
@@ -36,10 +37,11 @@ const Registro = () => {
     }
 
     return (
-        <div className="auth-container">
+        <div className={styles.nuevaCuenta}>
             <h2>Crear una nueva cuenta</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
+            
+            <form onSubmit={handleSubmit} className={styles.form}>
+                <div>
                     <label htmlFor="email">Correo Electrónico</label>
                     <input
                         type="email"
@@ -48,9 +50,11 @@ const Registro = () => {
 
                         onChange={(e) => setEmail(e.target.value)}
                         required
+
+                        placeholder="Correo Electrónico"
                     />
                 </div>
-                <div className="form-group">
+                <div>
                     <label htmlFor="password">Contraseña</label>
                     <input
                         type="password"
@@ -61,11 +65,10 @@ const Registro = () => {
                         required
 
                         placeholder="Mínimo 6 caracteres"
-
                     />
                 </div>
                 {error && <p className="error-message">{error}</p>}
-                <button type="submit">Registrarse</button>
+                <button type="submit" className={styles.btnRegistrarse}>Registrarse</button>
             </form>
         </div>
     )
